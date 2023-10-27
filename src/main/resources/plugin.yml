@@ -1,4 +1,17 @@
-name: score
-version: '${project.version}'
-main: me.covetplugins.Score
+name: original-covetplugins
+version: '1.0-SNAPSHOT'
+main: me.covetplugins.Main
 api-version: '1.18'
+commands:
+  board:
+    description: "Turns the scoreboard on/off or reloads the configuration"
+    usage: "/board <on/off/reload>"
+    permission: board.op
+    permission-message: "You do not have the permissions to use this command."
+permissions:
+  board.op:
+    description: "Permissions for the /board command"
+    default: op
+    children:
+      board.op.command: true
+depend: [NametagEdit]
