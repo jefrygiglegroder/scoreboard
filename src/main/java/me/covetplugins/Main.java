@@ -1,47 +1,38 @@
 package me.covetplugins;
 
-import me.covetplugins.handler.BoardCommand;
-import me.covetplugins.handler.eventListener;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.scoreboard.DisplaySlot;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
-public final class Main extends JavaPlugin {
+public class Main extends JavaPlugin {
 
-    private BukkitTask task;
+    private ScoreboardManager scoreboardManager;
 
     @Override
     public void onEnable() {
-        getCommand("board").setExecutor(new BoardCommand(this));
-        // Initialize the configuration
-        saveDefaultConfig(); // This will create a default config.yml if it doesn't exist
+        // Load or create the configuration
+        getConfig().options().copyDefaults(true);
+        saveConfig();
 
-        FileConfiguration config = getConfig(); // Use getConfig() to load the configuration
+        // Initialize the scoreboard manager with configuration
+        String title = getConfig().getString("scoreboard.title", "My Scoreboard");
+        String displaySlotStr = getConfig().getString("scoreboard.displaySlot", "SIDEBAR");
+        DisplaySlot displaySlot = DisplaySlot.valueOf(displaySlotStr);
+        List<String> lines = getConfig().getStringList("scoreboard.lines");
 
-        getServer().getScheduler().scheduleSyncRepeatingTask(this, board.getInstance(), 0L, 20L);
+        scoreboardManager = new ScoreboardManager(this, title, displaySlot, lines);
 
-        // Your code to work with the configuration
-        List<String> scoreboardLines = config.getStringList("scoreboard.lines");
-
-        // ...
-
-        if (config != null) {
-            // Modify the scoreboard or perform other actions based on the loaded configuration
-            // ...
-        } else {
-            getLogger().severe("Config file not found or couldn't be loaded. Unable to create scoreboard.");
-        }
+        // Register event listeners
+        getServer().getPluginManager().registerEvents(scoreboardManager, this);
     }
 
     @Override
     public void onDisable() {
-        if (task != null && !task.isCancelled())
-            task.cancel();
+        // Disable and clean up any resources if needed
+    }
+
+    public ScoreboardManager getScoreboardManager() {
+        return scoreboardManager;
     }
 }

@@ -1,17 +1,18 @@
 name: original-covetplugins
-version: '1.0-SNAPSHOT'
+version: 1.0-SNAPSHOT
 main: me.covetplugins.Main
-api-version: '1.18'
+api-version: 1.18
+author: jefry
+description: Your plugin description
+
 commands:
-  board:
-    description: "Turns the scoreboard on/off or reloads the configuration"
-    usage: "/board <on/off/reload>"
-    permission: board.op
-    permission-message: "You do not have the permissions to use this command."
+  scoreboard:
+    description: Control the scoreboard functionality
+    usage: /scoreboard <on|off|reload>
+    aliases: [sb]
+    permission: covet.scoreboard
+
 permissions:
-  board.op:
-    description: "Permissions for the /board command"
+  covet.scoreboard:
+    description: Permission to use the /scoreboard command
     default: op
-    children:
-      board.op.command: true
-depend: [NametagEdit]
