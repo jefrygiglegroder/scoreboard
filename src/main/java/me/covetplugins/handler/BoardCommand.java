@@ -24,17 +24,12 @@ public class BoardCommand implements CommandExecutor {
 
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("on")) {
-                // Turn on the scoreboard
-                // Implement the logic to enable the scoreboard here
                 player.sendMessage("Scoreboard enabled.");
                 return true;
             } else if (args[0].equalsIgnoreCase("off")) {
-                // Turn off the scoreboard
-                // Implement the logic to disable the scoreboard here
                 player.sendMessage("Scoreboard disabled.");
                 return true;
             } else if (args[0].equalsIgnoreCase("reload")) {
-                // Reload the configuration
                 plugin.reloadConfig();
                 player.sendMessage("Configuration reloaded.");
                 return true;
