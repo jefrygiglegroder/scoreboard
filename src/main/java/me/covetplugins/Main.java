@@ -22,9 +22,8 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig(); 
 
         FileConfiguration config = getConfig(); 
-
-        getServer().getScheduler().scheduleSyncRepeatingTask(this, board.getInstance(), 0L, 20L);
-
+        
+        Scoreboard customScoreboard = new Scoreboard(this);
 
         List<String> scoreboardLines = config.getStringList("scoreboard.lines");
 
