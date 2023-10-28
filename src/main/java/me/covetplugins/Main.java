@@ -19,21 +19,17 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         getCommand("board").setExecutor(new BoardCommand(this));
-        // Initialize the configuration
-        saveDefaultConfig(); // This will create a default config.yml if it doesn't exist
+        saveDefaultConfig(); 
 
-        FileConfiguration config = getConfig(); // Use getConfig() to load the configuration
+        FileConfiguration config = getConfig(); 
 
         getServer().getScheduler().scheduleSyncRepeatingTask(this, board.getInstance(), 0L, 20L);
 
-        // Your code to work with the configuration
+
         List<String> scoreboardLines = config.getStringList("scoreboard.lines");
 
-        // ...
-
         if (config != null) {
-            // Modify the scoreboard or perform other actions based on the loaded configuration
-            // ...
+
         } else {
             getLogger().severe("Config file not found or couldn't be loaded. Unable to create scoreboard.");
         }
