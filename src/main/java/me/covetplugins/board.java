@@ -28,7 +28,6 @@ public class board implements Runnable {
                     updateBelowName(player);
                 }
             } else {
-                // Create a new sidebar by default
                 createNewScoreboard(player);
             }
         }
@@ -49,12 +48,11 @@ public class board implements Runnable {
 
         team1.addEntry(teamKey);
 
-        // Fetch the placeholder from the config
         String placeholder = getConfigPlaceholder();
 
         team1.setPrefix(placeholder);
 
-        // Set the suffix as additional information, such as "Mana: X"
+
         String manaValue = calculateManaForPlayer(player);
         team1.setSuffix("Mana: " + manaValue);
 
@@ -69,13 +67,13 @@ public class board implements Runnable {
         Scoreboard scoreboard = player.getScoreboard();
         Team team = scoreboard.getTeam("team1");
 
-        // Fetch the placeholder from the config
+
         String placeholder = getConfigPlaceholder();
 
-        // Update the prefix with the placeholder
+
         String updatedPrefix = placeholder;
 
-        // Update the suffix with additional information, such as "Mana: X"
+
         String manaValue = calculateManaForPlayer(player);
         String updatedSuffix = "Mana: " + manaValue;
 
@@ -89,17 +87,17 @@ public class board implements Runnable {
         Scoreboard scoreboard = player.getScoreboard();
         Team team = scoreboard.getTeam("team1");
 
-        // Fetch the placeholder from the config
+
         String placeholder = getConfigPlaceholder();
 
-        // Update the prefix with the placeholder
+
         String updatedPrefix = placeholder;
 
-        // Update the suffix with additional information, such as "Mana: X"
+
         String manaValue = calculateManaForPlayer(player);
         String updatedSuffix = "Mana: " + manaValue;
 
-        // Set the new objective to be displayed below the name
+
         Objective belowNameObjective = scoreboard.getObjective("belowName");
         if (belowNameObjective != null) {
             belowNameObjective.setDisplayName(updatedPrefix + " - " + updatedSuffix);
@@ -109,15 +107,10 @@ public class board implements Runnable {
     }
 
     private String getConfigPlaceholder() {
-        // Implement this method to fetch the placeholder from your config
-        // Return the placeholder as a string, e.g., "{HEALTH}" or "{MANA}"
-        // based on the value in your config.
         return null;
     }
 
     private String calculateManaForPlayer(Player player) {
-        // Implement this method to calculate the player's mana value
-        // Return the calculated mana value as a string.
         return null;
     }
 
