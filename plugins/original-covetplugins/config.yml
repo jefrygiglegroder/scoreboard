@@ -1,0 +1,10 @@
+scoreboard:
+  title: My Scoreboard
+  displaySlot: SIDEBAR
+  lines:
+  - Line 6
+  - Line 2
+  - Line 3
+  - Line 4
+  - Line 5
+  placeholder: '{HEALTH}' # Placeholder for health or mana
